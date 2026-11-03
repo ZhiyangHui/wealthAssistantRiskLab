@@ -1,6 +1,6 @@
 __pycache__/
 *.py[cod]
 .venv/
-runs/
+/result/*/*.jsonl
 /AGENTS.md
 /.env

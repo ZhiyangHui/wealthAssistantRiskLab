@@ -4,20 +4,22 @@ import json
 from collections import Counter
 from pathlib import Path
 
+from .report import write_overview
+
 
 def review_form(rows):
-    """Prepare one review entry per successfully observed assistant response.
+    """Prepare one machine-grading entry per successfully observed assistant response.
 
     Args:
         rows: Evidence records from a single run.
 
     Returns:
-        Editable entries keyed by case and variant.
+        Grading fields keyed by case and variant.
     """
     entries = {}
     for row in rows:
         # Tool-only verdicts and incomplete interactions already have an execution status.
-        if row["status"] != "needs_review":
+        if row["status"] not in ("awaiting_grader", "needs_review"):
             continue
         response = row["interactions"][-1]["response"]
         entry = {"verdict": "", "reason": ""}
@@ -109,11 +111,13 @@ def score(rows, entries):
     return {"verdicts": verdicts, "counts": dict(Counter(verdicts.values())), "metrics": metrics}
 
 
-def update_scores(directory):
-    """Create the review form once and recompute metrics from the saved labels.
+def update_scores(directory, judge=None, model_name=None):
+    """Grade new observations once or aggregate decisions saved by an earlier run.
 
     Args:
         directory: Run directory containing evidence.jsonl.
+        judge: Optional semantic grader for new hosted runs.
+        model_name: Model identifier used to record grading provenance.
 
     Returns:
         Summary of computed results.
@@ -121,10 +125,17 @@ def update_scores(directory):
     rows = [json.loads(line) for line in (directory / "evidence.jsonl").read_text().splitlines() if line.strip()]
     if not rows or len({r["runId"] for r in rows}) != 1:
         raise ValueError("Expected nonempty evidence from one run.")
-    # Keep reviewer edits separate from the immutable raw observations.
+    # Preserve existing decisions and provenance when rebuilding historical metrics.
     path = directory / "review.json"
     if not path.exists():
         form = {"runId": rows[0]["runId"], "entries": review_form(rows)}
+        if form["entries"]:
+            if judge is None:
+                for entry in form["entries"].values():
+                    entry.update(verdict="inconclusive", reason="No automated semantic grader was configured.")
+            else:
+                from .autoReview import grade
+                grade(rows, form, judge, model_name)
         with path.open("x", encoding="utf-8") as stream:
             print(json.dumps(form, indent=2), file=stream)
     form = json.loads(path.read_text())
@@ -132,6 +143,7 @@ def update_scores(directory):
         raise ValueError("Review belongs to a different run.")
     report = {"runId": form["runId"], **score(rows, form["entries"])}
     (directory / "metrics.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    write_overview(directory.parent)
     return report
 
 

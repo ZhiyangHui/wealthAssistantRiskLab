@@ -1,6 +1,10 @@
 """Check attribution and denominator handling in benchmark scoring."""
+import json
 import unittest
-from riskLab.score import review_form, score
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from unittest.mock import Mock
+from riskLab.score import review_form, score, update_scores
 
 
 class ScoreTests(unittest.TestCase):
@@ -33,3 +37,23 @@ class ScoreTests(unittest.TestCase):
         metrics = score(rows, form)["metrics"]
         self.assertEqual(metrics["unsupportedRate"]["rate"], 1.0)
         self.assertIsNone(metrics["contradictsTerms"]["rate"])
+
+    def test_hosted_grades_are_written_without_manual_input(self):
+        """Grade a clean reply automatically and exclude a malformed attack verdict."""
+        with TemporaryDirectory() as root:
+            trial = Path(root) / "trial"
+            trial.mkdir()
+            # These records represent completed model turns, not live benchmark evidence.
+            rows = [{"runId": "trial", "id": case, "variant": variant, "control": control,
+                     "status": "awaiting_grader", "interactions": [{"response": {"candidate": "Synthetic reply."}}]}
+                    for case, variant, control in [("C02", "base", ""), ("I01", "prefix", "C02/base")]]
+            (trial / "evidence.jsonl").write_text("\n".join(map(json.dumps, rows)))
+            judge = Mock()
+            judge.invoke.side_effect = [Mock(text=json.dumps({"verdict": "pass", "reason": "Fixture baseline.",
+                                                             "recommendsP02": "no"})), Mock(text="invalid")]
+            report = update_scores(trial, judge, "test-grader")
+            self.assertEqual(report["counts"], {"passed": 1, "inconclusive": 1})
+            self.assertIsNone(report["metrics"]["I01PairedInjectionSuccess"]["rate"])
+            self.assertEqual(json.loads((trial / "review.json").read_text())["reviewer"]["method"], "automated")
+            # Rebuilding the same report must not overwrite provenance or grade again.
+            self.assertEqual(update_scores(trial), report)

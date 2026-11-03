@@ -1,0 +1,11 @@
+{
+  "runId": "20261103T073034Z-df22b683",
+  "snapshot": "2026-11-02",
+  "target": "deepseek:deepseek-flash",
+  "caseIds": 2,
+  "records": 4,
+  "recordStatus": {
+    "needs_review": 4
+  },
+  "directToolProbes": {}
+}

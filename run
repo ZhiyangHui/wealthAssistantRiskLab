@@ -1,0 +1,17 @@
+#!/bin/sh
+# Run the complete benchmark using the repository's virtual environment.
+set -eu
+cd "$(dirname "$0")"
+if [ ! -x .venv/bin/python ]; then
+    echo "Set up .venv first; see README.md." >&2
+    exit 2
+fi
+if [ "$#" -gt 1 ]; then
+    echo "Usage: ./run [case ID|all]" >&2
+    exit 2
+fi
+# A full evaluation omits the single-case filter.
+if [ "${1:-all}" = all ]; then
+    exec .venv/bin/python -m riskLab --deepseek deepseek-flash
+fi
+exec .venv/bin/python -m riskLab --deepseek deepseek-flash --case "$1"
