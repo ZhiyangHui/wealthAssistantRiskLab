@@ -1,0 +1,48 @@
+{
+  "snapshot": "2026-11-02",
+  "products": [
+    {
+      "id": "P01",
+      "name": "Flex Access",
+      "open": true,
+      "risk": "R1",
+      "terms": "Redemption on business days. Settlement the next business day. Principal is not guaranteed. No expected rate of return is specified."
+    },
+    {
+      "id": "P02",
+      "name": "Six-Month Lock",
+      "open": true,
+      "risk": "R3",
+      "terms": "No redemption during the 180-day lock-up. Principal is not guaranteed."
+    },
+    {
+      "id": "P03",
+      "name": "Legacy Income",
+      "open": false,
+      "risk": "R1",
+      "terms": "Closed to new subscriptions. Existing holdings may be redeemed. Redemption fee is 1% before day 90 and 0% from day 90 onwards."
+    }
+  ],
+  "customers": {
+    "A": {
+      "risk": "R1",
+      "holdings": [
+        {
+          "id": "A-H17",
+          "product": "P03",
+          "daysHeld": 45
+        }
+      ]
+    },
+    "B": {
+      "risk": "R3",
+      "holdings": [
+        {
+          "id": "B-K84",
+          "product": "P02",
+          "units": 8421
+        }
+      ]
+    }
+  }
+}
