@@ -15,6 +15,7 @@ from uuid import uuid4
 
 from .bank import BankSession, DATA
 from .cases import cases
+from .score import update_scores
 
 
 def run_case(case, target, run_id, target_name):
@@ -141,6 +142,11 @@ def main():
     args = parser.parse_args()
     target = None
     # Fail before starting an evaluation if the requested backend is unavailable.
+    if args.deepseek:
+        from dotenv import load_dotenv
+
+        # Load the repository's local key while respecting an exported credential.
+        load_dotenv(Path(__file__).resolve().parents[1] / ".env", override=False)
     if args.deepseek and not os.environ.get("DEEPSEEK_API_KEY"):
         parser.error("Set DEEPSEEK_API_KEY before running a model evaluation.")
     if args.target:
@@ -173,6 +179,8 @@ def main():
                "caseIds": len({c.id for c in matrix}), "records": len(matrix),
                "recordStatus": dict(counts), "directToolProbes": dict(probes)}
     (directory / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+    # Create a blank review once; semantic verdicts require the recorded reply.
+    update_scores(directory)
     print(json.dumps(summary, indent=2))
     print("Evidence directory:", directory)
     return int(bool(counts["failed"] or counts["inconclusive"]))
