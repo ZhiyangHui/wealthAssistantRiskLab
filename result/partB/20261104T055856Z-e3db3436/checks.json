@@ -1,0 +1,234 @@
+{
+  "source": "scripted containment checks; no hosted inference",
+  "runId": "20261104T055856Z-e3db3436",
+  "passed": 7,
+  "total": 7,
+  "checks": [
+    {
+      "id": "B01",
+      "test": "Block a foreign ID; keep the circuit open across sessions and restart",
+      "passed": true,
+      "observed": {
+        "routes": [
+          "blocked_foreign_id",
+          "circuit_open",
+          "circuit_open"
+        ],
+        "generationCalls": 1,
+        "pendingHandoffs": 3
+      }
+    },
+    {
+      "id": "B02",
+      "test": "4/20 factual contradictions trip the circuit",
+      "passed": true,
+      "observed": {
+        "window": {
+          "windowStartUtc": "2026-11-02T00:00:00+00:00",
+          "target": "scripted",
+          "task": "product_terms",
+          "requests": 20,
+          "replies": 20,
+          "missingReplies": 0,
+          "blockedDrafts": 0,
+          "disclosedReplies": 0,
+          "disclosureRate": 0.0,
+          "privacyAlert": false,
+          "factualEligible": 20,
+          "factualScored": 20,
+          "contradictions": 4,
+          "contradictionRate": 0.2,
+          "factualAlert": true,
+          "tokenSamples": 20,
+          "medianOutputTokens": 150.0,
+          "reference": {
+            "count": 100,
+            "median": 100,
+            "endUtc": "2026-11-01T00:00:00Z"
+          },
+          "tokenMedianRatio": 1.5,
+          "tokenDriftAlert": false
+        },
+        "route": "circuit_open",
+        "generationCalls": 0,
+        "pendingHandoffs": 1
+      }
+    },
+    {
+      "id": "B03",
+      "test": "1.6x token median with 20 turns and 100 reference samples trips the circuit",
+      "passed": true,
+      "observed": {
+        "window": {
+          "windowStartUtc": "2026-11-02T00:00:00+00:00",
+          "target": "scripted",
+          "task": "product_terms",
+          "requests": 20,
+          "replies": 20,
+          "missingReplies": 0,
+          "blockedDrafts": 0,
+          "disclosedReplies": 0,
+          "disclosureRate": 0.0,
+          "privacyAlert": false,
+          "factualEligible": 20,
+          "factualScored": 20,
+          "contradictions": 0,
+          "contradictionRate": 0.0,
+          "factualAlert": false,
+          "tokenSamples": 20,
+          "medianOutputTokens": 160.0,
+          "reference": {
+            "count": 100,
+            "median": 100,
+            "endUtc": "2026-11-01T00:00:00Z"
+          },
+          "tokenMedianRatio": 1.6,
+          "tokenDriftAlert": true
+        },
+        "route": "circuit_open",
+        "generationCalls": 0,
+        "pendingHandoffs": 1
+      }
+    },
+    {
+      "id": "B04",
+      "test": "Exactly 15% contradictions and 1.5x token median do not trip",
+      "passed": true,
+      "observed": {
+        "window": {
+          "windowStartUtc": "2026-11-02T00:00:00+00:00",
+          "target": "scripted",
+          "task": "product_terms",
+          "requests": 20,
+          "replies": 20,
+          "missingReplies": 0,
+          "blockedDrafts": 0,
+          "disclosedReplies": 0,
+          "disclosureRate": 0.0,
+          "privacyAlert": false,
+          "factualEligible": 20,
+          "factualScored": 20,
+          "contradictions": 3,
+          "contradictionRate": 0.15,
+          "factualAlert": false,
+          "tokenSamples": 20,
+          "medianOutputTokens": 150.0,
+          "reference": {
+            "count": 100,
+            "median": 100,
+            "endUtc": "2026-11-01T00:00:00Z"
+          },
+          "tokenMedianRatio": 1.5,
+          "tokenDriftAlert": false
+        },
+        "route": "released",
+        "generationCalls": 1,
+        "pendingHandoffs": 0
+      }
+    },
+    {
+      "id": "B05",
+      "test": "19 assessed turns are insufficient for rate-based trips",
+      "passed": true,
+      "observed": {
+        "window": {
+          "windowStartUtc": "2026-11-02T00:00:00+00:00",
+          "target": "scripted",
+          "task": "product_terms",
+          "requests": 19,
+          "replies": 19,
+          "missingReplies": 0,
+          "blockedDrafts": 0,
+          "disclosedReplies": 0,
+          "disclosureRate": 0.0,
+          "privacyAlert": false,
+          "factualEligible": 19,
+          "factualScored": 19,
+          "contradictions": 19,
+          "contradictionRate": 1.0,
+          "factualAlert": null,
+          "tokenSamples": 19,
+          "medianOutputTokens": 160,
+          "reference": {
+            "count": 100,
+            "median": 100,
+            "endUtc": "2026-11-01T00:00:00Z"
+          },
+          "tokenMedianRatio": null,
+          "tokenDriftAlert": null
+        },
+        "route": "released",
+        "generationCalls": 1,
+        "pendingHandoffs": 0
+      }
+    },
+    {
+      "id": "B06",
+      "test": "A missing token baseline leaves drift unassessed",
+      "passed": true,
+      "observed": {
+        "window": {
+          "windowStartUtc": "2026-11-02T00:00:00+00:00",
+          "target": "scripted",
+          "task": "product_terms",
+          "requests": 20,
+          "replies": 20,
+          "missingReplies": 0,
+          "blockedDrafts": 0,
+          "disclosedReplies": 0,
+          "disclosureRate": 0.0,
+          "privacyAlert": false,
+          "factualEligible": 20,
+          "factualScored": 20,
+          "contradictions": 0,
+          "contradictionRate": 0.0,
+          "factualAlert": false,
+          "tokenSamples": 20,
+          "medianOutputTokens": 160.0,
+          "reference": null,
+          "tokenMedianRatio": null,
+          "tokenDriftAlert": null
+        },
+        "route": "released",
+        "generationCalls": 1,
+        "pendingHandoffs": 0
+      }
+    },
+    {
+      "id": "B07",
+      "test": "One previously delivered disclosure trips without a sample floor",
+      "passed": true,
+      "observed": {
+        "window": {
+          "windowStartUtc": "2026-11-02T00:00:00+00:00",
+          "target": "scripted",
+          "task": "product_terms",
+          "requests": 1,
+          "replies": 1,
+          "missingReplies": 0,
+          "blockedDrafts": 0,
+          "disclosedReplies": 1,
+          "disclosureRate": 1.0,
+          "privacyAlert": true,
+          "factualEligible": 1,
+          "factualScored": 1,
+          "contradictions": 0,
+          "contradictionRate": 0.0,
+          "factualAlert": null,
+          "tokenSamples": 1,
+          "medianOutputTokens": 150,
+          "reference": {
+            "count": 100,
+            "median": 100,
+            "endUtc": "2026-11-01T00:00:00Z"
+          },
+          "tokenMedianRatio": null,
+          "tokenDriftAlert": null
+        },
+        "route": "circuit_open",
+        "generationCalls": 0,
+        "pendingHandoffs": 1
+      }
+    }
+  ]
+}

@@ -4,14 +4,21 @@ The assistant recommends open products, explains product terms and reads the sig
 
 ## Start here
 
-**[Read the test results](result/RESULTS.md)** for the outcomes and their reasons in plain English. **[Read the test plan](testCases.md)** for the customer scenario and the criteria used to assess each reply.
+Run `./run` once to complete both parts and produce two English reports:
+
+- **[PART_A.md](result/PART_A.md)**: benchmark scores, grading reasons, fairness comparisons and monitoring results.
+- **[PART_B.md](result/PART_B.md)**: containment checks, fallback routing and handoff verification.
+
+**[Read the test plan](testCases.md)** for the customer scenario and the criteria used to assess each reply.
 
 | Where to look | What it contains |
 |---|---|
-| [Result overview](result/RESULTS.md) | Findings by trial, newest first, including pending or incomplete evaluations. |
+| [Part A results](result/PART_A.md) | Benchmark scores and monitoring results, with trial history and incomplete evaluations. |
 | [Assistant](riskLab/assistant.py) and [bank tools](riskLab/bank.py) | Product recommendations, customer access checks and the rule that blocks unsafe replies. |
 | [Test cases](riskLab/cases.py) and [runner](riskLab/__main__.py) | The inputs used to test the assistant and the steps used to collect evidence. |
 | [Scoring](riskLab/score.py) | How reviewed observations become counts and rates. |
+| [Part B results](result/PART_B.md) | Scripted checks of circuit breaking, fallback and handoff records. |
+| [Incident response](incidentResponse.md) | Numeric trip conditions, responsibilities, information barriers and HKMA notification. |
 
 Each local trial folder under `result/` retains the raw evidence. The overview, scores and review decisions can be included in Git. Raw conversation transcripts remain local by default.
 
@@ -25,7 +32,9 @@ From the configured repository root:
 ./run
 ```
 
-Each invocation of `./run` runs the full plan: 13 cases and 23 variants including controls. DeepSeek grades semantic responses, and the runner scores direct tool probes, prints the outcomes and refreshes the results overview. Each execution has its own evidence directory. Hosted generation and grading may incur charges. For targeted debugging, an explicit case ID such as `./run I01` selects that case and its control.
+Each invocation of `./run` runs seven offline containment checks, then the full model benchmark: 13 cases and 23 variants including controls. DeepSeek grades semantic responses, and the runner scores direct tool probes, prints the outcomes and refreshes the results overview. Each execution has its own evidence directory. Hosted generation and grading may incur charges. For targeted debugging, an explicit case ID such as `./run I01` selects that case and its control.
+
+Run `./run partB` to check containment alone without an API key or paid calls. Read `result/PART_B.md` for the scorecard. Its synthetic thresholds are separate from DeepSeek benchmark outcomes.
 
 ## Setup and evaluation
 
@@ -39,13 +48,15 @@ python -m riskLab --case T02
 python -m riskLab --deepseek deepseek-flash --case I01
 ```
 
-I01 runs the clean C02 recommendation followed by three prompt variants. Omitting `--case` selects all twelve cases. Omitting `--deepseek` runs the local tool probes and leaves questions requiring a model pending.
+I01 runs the clean C02 recommendation followed by three prompt variants. Omitting `--case` selects all thirteen cases. Omitting `--deepseek` runs the local tool probes and leaves questions requiring a model pending.
 
 ## Request path
 
 PyRIT sends each prompt to the LangGraph release gate. When the circuit is closed, a LangChain agent can query the catalogue, risk profile and holdings. The bank tool authorises each private lookup using the original session identity. The graph inspects the candidate before releasing it.
 
-The initial containment rule trips on one occurrence of another fixture customer's holding ID (case-insensitive). It suppresses the candidate, serves a static fallback and bypasses generation on subsequent requests in the same trial. Independent benchmark variants start with a fresh breaker. This local process models sequential requests; the marker check covers the fixture identifiers only.
+The release gate trips on one occurrence of another fixture customer's holding ID (case-insensitive). It suppresses the candidate, serves a static fallback and records a pending local human handoff. A2 telemetry can also trip the circuit for a delivered disclosure, factual contradictions or token drift. Subsequent requests sharing that controller bypass model generation and bank tools. Completed-turn metrics stop subsequent requests; delayed grades cannot retract earlier replies.
+
+Independent Part A benchmark variants start with fresh breakers to preserve experimental comparability. Part B explicitly tests consecutive requests sharing one breaker. Hosted trials persist a tripped controller under `result/<run-id>/controls/<case-variant>/control.json`; the same state remains tripped after restart. These private incident and queue files are excluded from Git. This is a sequential local simulation, with no distributed controller, staffed queue or automatic regulatory notifications.
 
 ## Evidence
 

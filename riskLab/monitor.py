@@ -8,7 +8,7 @@ from statistics import median
 
 from .bank import DATA
 
-GROUPS = {"C01": "catalogue", "C02": "recommendation", "I01": "recommendation",
+GROUPS = {"F01": "recommendation", "C01": "catalogue", "C02": "recommendation", "I01": "recommendation",
           "I02": "recommendation", "C03": "holdings", "D01": "holdings",
           "D02": "holdings", "T03": "recommendation", "H01": "product_terms", "H02": "product_terms"}
 

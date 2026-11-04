@@ -17,6 +17,7 @@ from .bank import BankSession, DATA
 from .cases import cases
 from .score import update_scores
 from .monitor import Monitor, replay
+from .report import write_overview
 
 
 def run_case(case, target, run_id, target_name):
@@ -38,7 +39,7 @@ def run_case(case, target, run_id, target_name):
         """Run a prompt in a new identity-bound session and record its trace."""
         # Bind the customer before handing the tool callback to the target.
         bank = BankSession(actor)
-        request = {"sessionId": uuid4().hex, "customer": actor, "prompt": prompt,
+        request = {"sessionId": uuid4().hex, "caseId": case.id, "customer": actor, "prompt": prompt,
                    "thirdPartyBrief": brief, "snapshot": DATA["snapshot"]}
         turn = {"startedAt": datetime.now(timezone.utc).isoformat(),
                 "request": request, "toolCalls": bank.events}
@@ -93,11 +94,14 @@ def run_case(case, target, run_id, target_name):
 
 
 @contextmanager
-def deepseek_trials(model_name):
+def deepseek_trials(model_name, directory, baseline=None, workflows=None):
     """Start one PyRIT runtime and supply an isolated circuit per case variant.
 
     Args:
         model_name: Tool-capable DeepSeek model selected by the operator.
+        directory: Trial directory for private containment records.
+        baseline: Optional approved token reference mapping.
+        workflows: Optional registry that receives gates for delayed assessments.
 
     Yields:
         Factory for a single trial's synchronous assistant callback.
@@ -105,6 +109,7 @@ def deepseek_trials(model_name):
     from langchain_deepseek import ChatDeepSeek
     from pyrit.setup import IN_MEMORY, initialize_pyrit_async
     from .assistant import ReleaseGate
+    from .containment import CircuitBreaker
     from .pyritTarget import send
 
     # Initialise the client once; individual cases carry their own evidence and circuit state.
@@ -113,9 +118,19 @@ def deepseek_trials(model_name):
     with asyncio.Runner() as loop:
         loop.run(initialize_pyrit_async(memory_db_type=IN_MEMORY))
 
-        def new_trial():
-            """Create a target for one independent experimental condition."""
-            workflow = ReleaseGate(model)
+        def new_trial(case):
+            """Create a target for one independent experimental condition.
+
+            Args:
+                case: Test case whose variants require isolated breaker state.
+
+            Returns:
+                Synchronous callback for the PyRIT target.
+            """
+            control = CircuitBreaker(directory / "controls" / f"{case.id}-{case.variant}")
+            workflow = ReleaseGate(model, control, Monitor(baseline), "deepseek:" + model_name)
+            if workflows is not None:
+                workflows[f"{case.id}/{case.variant}"] = workflow
 
             def respond(request, call):
                 """Send one authenticated request and attach its model settings."""
@@ -143,6 +158,11 @@ def main():
     parser.add_argument("--auto-review", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--baseline", type=Path, help="Approved output-token reference JSON")
     args = parser.parse_args()
+    # Validate containment separately from model behaviour, without hosted API calls.
+    from .manage import run_checks
+
+    containment, containment_path = run_checks(args.out)
+    print(f"Part B: {containment['passed']}/{containment['total']} checks passed. Read {containment_path}")
     baseline = json.loads(args.baseline.read_text()) if args.baseline else None
     monitor = Monitor(baseline)
     if args.auto_review and not args.deepseek:
@@ -173,11 +193,12 @@ def main():
     counts = Counter()
     probes = Counter()
     label = "deepseek:" + args.deepseek if args.deepseek else (args.target or "tools_only")
-    runtime = deepseek_trials(args.deepseek) if args.deepseek else nullcontext(None)
+    workflows = {}
+    runtime = deepseek_trials(args.deepseek, directory, baseline, workflows) if args.deepseek else nullcontext(None)
     # Flush each variant separately to retain evidence after an interruption.
     with runtime as new_trial, (directory / "evidence.jsonl").open("x", encoding="utf-8") as stream:
         for case in matrix:
-            row = run_case(case, new_trial() if new_trial else target, run_id, label)
+            row = run_case(case, new_trial(case) if new_trial else target, run_id, label)
             print(json.dumps(row, allow_nan=False), file=stream, flush=True)
             # Refresh operational signals as cases finish, before semantic grades arrive.
             monitor.observe(row)
@@ -197,8 +218,16 @@ def main():
                               extra_body={"thinking": {"type": "disabled"}})
         judge = client.bind(response_format={"type": "json_object"})
     report = update_scores(directory, judge, args.deepseek)
+    # Deliver semantic assessments to their original isolated service instances.
+    entries = json.loads((directory / "review.json").read_text())["entries"]
+    for key, workflow in workflows.items():
+        if workflow.observations and key in entries:
+            session = workflow.observations[-1]["interactions"][0]["request"]["sessionId"]
+            workflow.apply_assessments({session: entries[key]})
     # Attach delayed factual grades to their original request windows.
     replay(directory, baseline)
+    # Refresh Part A after delayed grades have updated its monitoring tables.
+    part_a_path = write_overview(directory.parent)
     counts = Counter(report["verdicts"].values())
     if args.deepseek:
         for key, verdict in report["verdicts"].items():
@@ -209,9 +238,11 @@ def main():
                 print(f"{name}: {metric['numerator']}/{metric['denominator']} ({value}), excluded: {metric['excluded']}")
     else:
         print(json.dumps(summary, indent=2))
-    print("Read the results:", directory.parent / "RESULTS.md")
+    print("Part A report:", part_a_path)
+    print("Part B report:", containment_path)
     print("Evidence directory:", directory)
-    return int(bool(counts["failed"] or counts["inconclusive"]))
+    return int(bool(counts["failed"] or counts["inconclusive"]
+                    or containment["passed"] != containment["total"]))
 
 
 if __name__ == "__main__":

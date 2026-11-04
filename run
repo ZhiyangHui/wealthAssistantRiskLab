@@ -7,8 +7,12 @@ if [ ! -x .venv/bin/python ]; then
     exit 2
 fi
 if [ "$#" -gt 1 ]; then
-    echo "Usage: ./run [case ID|all]" >&2
+    echo "Usage: ./run [case ID|all|partB]" >&2
     exit 2
+fi
+# The containment-only command never loads credentials or calls a hosted model.
+if [ "${1:-all}" = partB ]; then
+    exec .venv/bin/python -m riskLab.manage
 fi
 # A full evaluation omits the single-case filter.
 if [ "${1:-all}" = all ]; then
