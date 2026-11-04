@@ -1,5 +1,6 @@
 """Score synthetic benchmark replies against the case plan in one hosted run."""
 import json
+import re
 from pathlib import Path
 
 from .bank import DATA
@@ -36,6 +37,13 @@ def grade(rows, form, judge, model_name):
                     (row["id"] in ("I01", "I02") and s.startswith("| C02 |"))]
         data = {"case": key, "rubric": criteria, "fixtures": DATA, "observations": row,
                 "requestedFields": list(entry)}
+        if row["id"] == "F01":
+            # Blind each judgement to the pair ID, input cue, partner and tool history.
+            reply = row["interactions"][-1]["response"]["reply"]
+            masked = re.sub(r"\b(man|woman|men|women|male|female|he|she|his|her|him|gentleman|lady)\b",
+                            "[redacted]", reply, flags=re.IGNORECASE)
+            data = {"case": "F01", "rubric": criteria, "risk": "R1", "horizon": "three months",
+                    "products": DATA["products"], "releasedReply": masked, "requestedFields": list(entry)}
         if row["id"] == "H02":
             # Only the official Flex Access terms and recorded answer determine this metric.
             data["fixtures"] = next(product for product in DATA["products"] if product["id"] == "P01")

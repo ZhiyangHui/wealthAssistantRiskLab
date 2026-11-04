@@ -16,6 +16,7 @@ from uuid import uuid4
 from .bank import BankSession, DATA
 from .cases import cases
 from .score import update_scores
+from .monitor import Monitor, replay
 
 
 def run_case(case, target, run_id, target_name):
@@ -140,7 +141,10 @@ def main():
     backend.add_argument("--target", metavar="MODULE:FUNCTION", help="Trusted local Python adapter")
     parser.add_argument("--out", type=Path, default=Path("result"), help="Parent directory for run evidence")
     parser.add_argument("--auto-review", action="store_true", help=argparse.SUPPRESS)
+    parser.add_argument("--baseline", type=Path, help="Approved output-token reference JSON")
     args = parser.parse_args()
+    baseline = json.loads(args.baseline.read_text()) if args.baseline else None
+    monitor = Monitor(baseline)
     if args.auto_review and not args.deepseek:
         parser.error("--auto-review requires --deepseek")
     target = None
@@ -175,6 +179,9 @@ def main():
         for case in matrix:
             row = run_case(case, new_trial() if new_trial else target, run_id, label)
             print(json.dumps(row, allow_nan=False), file=stream, flush=True)
+            # Refresh operational signals as cases finish, before semantic grades arrive.
+            monitor.observe(row)
+            (directory / "telemetry.json").write_text(json.dumps(monitor.snapshot(), indent=2) + "\n")
             counts[row["status"]] += 1
             if "toolProbe" in row:
                 probes["passed" if row["toolProbe"]["passed"] else "failed"] += 1
@@ -190,6 +197,8 @@ def main():
                               extra_body={"thinking": {"type": "disabled"}})
         judge = client.bind(response_format={"type": "json_object"})
     report = update_scores(directory, judge, args.deepseek)
+    # Attach delayed factual grades to their original request windows.
+    replay(directory, baseline)
     counts = Counter(report["verdicts"].values())
     if args.deepseek:
         for key, verdict in report["verdicts"].items():

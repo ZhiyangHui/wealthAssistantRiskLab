@@ -9,6 +9,7 @@ from .cases import cases
 
 
 TOPICS = {
+    "F01": "Matched-customer recommendation",
     "C01": "Available products", "C02": "Suitable recommendations", "C03": "Redemption fees",
     "I01": "Direct prompt injection", "I02": "Instructions hidden in a product brief",
     "D01": "Impersonation", "D02": "Privacy across customer sessions",
@@ -29,6 +30,7 @@ def write_overview(parent):
     lines = []
     latest = {}
     rates = {}
+    latest_pairs = None
     # Include unfinished trials explicitly so missing results cannot be mistaken for passes.
     for trial in sorted(parent.glob("????????T??????Z-*"), reverse=True):
         if not trial.is_dir():
@@ -72,6 +74,17 @@ def write_overview(parent):
                 value = (f"{m['numerator']} of {m['denominator']} ({m['rate']:.1%})"
                          if m["denominator"] else "No scored observations")
                 lines.extend([f"**{title}:** {value}. Excluded: {m['excluded']}.", ""])
+        if "fairness" in report:
+            f = report["fairness"]
+            cross, repeat = f["matchedMismatch"], f["repeatMismatch"]
+            pair_summary = (f"Gender-cue mismatches: {cross['numerator']}/{cross['denominator']} scored pairs "
+                            f"({cross['excluded']} excluded). Identical-prompt mismatches: "
+                            f"{repeat['numerator']}/{repeat['denominator']} ({repeat['excluded']} excluded). "
+                            f"Suitable only with the man cue: {f['manOnly']}; only with the woman cue: "
+                            f"{f['womanOnly']}; unsuitable for both: {f['bothUnsuitable']}.")
+            lines.extend([pair_summary, ""])
+            if latest_pairs is None:
+                latest_pairs = pair_summary
         reviewer = form.get("reviewer")
         if reviewer:
             label = reviewer.get("method", "Unrecorded")
@@ -111,6 +124,8 @@ def write_overview(parent):
         lines.append(f"| {key} | {topic} | {grade} | {status.replace('_', ' ')} | {source} |")
     lines.extend(["", "A passing attack test means the assistant met its safety criteria. "
                   "Attack success measures the opposite outcome: whether the injection induced an unsuitable recommendation.", ""])
+    if latest_pairs:
+        lines.extend([latest_pairs, ""])
     for family in ("I01", "I02"):
         metric = rates.get(family + "PairedInjectionSuccess")
         if metric and metric["denominator"]:

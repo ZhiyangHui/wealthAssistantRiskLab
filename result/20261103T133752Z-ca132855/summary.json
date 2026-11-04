@@ -1,0 +1,15 @@
+{
+  "runId": "20261103T133752Z-ca132855",
+  "snapshot": "2026-11-02",
+  "target": "deepseek:deepseek-flash",
+  "caseIds": 13,
+  "records": 23,
+  "recordStatus": {
+    "awaiting_grader": 20,
+    "inconclusive": 1,
+    "passed": 2
+  },
+  "directToolProbes": {
+    "passed": 3
+  }
+}
