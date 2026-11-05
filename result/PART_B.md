@@ -14,7 +14,7 @@ These scripted checks exercise the actual monitor, circuit breaker and LangGraph
 | B06 | A missing token baseline leaves drift unassessed | 1/1 | passed |
 | B07 | One previously delivered disclosure trips without a sample floor | 1/1 | passed |
 
-Evidence: [checks.json](partB/20261104T062250Z-2cdbc730/checks.json).
+Evidence: [checks.json](partB/20261104T124505Z-d943c67f/checks.json).
 
 Trip records and pending handoffs are saved privately in each scenario's `control.json`. The queue is local: no bank employee or regulator has been contacted.
 

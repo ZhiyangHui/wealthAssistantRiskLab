@@ -7,8 +7,12 @@ if [ ! -x .venv/bin/python ]; then
     exit 2
 fi
 if [ "$#" -gt 1 ]; then
-    echo "Usage: ./run [case ID|all|partB]" >&2
+    echo "Usage: ./run [case ID|all|partB|plan]" >&2
     exit 2
+fi
+# Inspect the expanded matrix without credentials, output files or model calls.
+if [ "${1:-all}" = plan ]; then
+    exec .venv/bin/python -m riskLab --plan
 fi
 # The containment-only command never loads credentials or calls a hosted model.
 if [ "${1:-all}" = partB ]; then

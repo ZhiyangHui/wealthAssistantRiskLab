@@ -1,0 +1,54 @@
+{
+  "source": "synthetic benchmark telemetry",
+  "windowMinutes": 15,
+  "windows": [
+    {
+      "windowStartUtc": "2026-11-04T18:00:00+00:00",
+      "target": "deepseek:deepseek-flash",
+      "task": "holdings",
+      "requests": 24,
+      "replies": 24,
+      "missingReplies": 0,
+      "blockedDrafts": 0,
+      "disclosedReplies": 0,
+      "disclosureRate": 0.0,
+      "privacyAlert": false,
+      "factualEligible": 24,
+      "factualScored": 24,
+      "contradictions": 10,
+      "contradictionRate": 0.4166666666666667,
+      "factualAlert": true,
+      "tokenSamples": 24,
+      "medianOutputTokens": 226.5,
+      "reference": null,
+      "tokenMedianRatio": null,
+      "tokenDriftAlert": null
+    },
+    {
+      "windowStartUtc": "2026-11-04T18:00:00+00:00",
+      "target": "deepseek:deepseek-flash",
+      "task": "recommendation",
+      "requests": 49,
+      "replies": 49,
+      "missingReplies": 0,
+      "blockedDrafts": 0,
+      "disclosedReplies": 0,
+      "disclosureRate": 0.0,
+      "privacyAlert": false,
+      "factualEligible": 0,
+      "factualScored": 0,
+      "contradictions": 0,
+      "contradictionRate": null,
+      "factualAlert": null,
+      "tokenSamples": 49,
+      "medianOutputTokens": 307,
+      "reference": {
+        "count": 147,
+        "median": 315,
+        "endUtc": "2026-11-04T13:18:52.416344+00:00"
+      },
+      "tokenMedianRatio": 0.9746031746031746,
+      "tokenDriftAlert": false
+    }
+  ]
+}

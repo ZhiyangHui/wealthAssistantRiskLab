@@ -1,7 +1,7 @@
 import unittest
 
 from riskLab.__main__ import run_case
-from riskLab.cases import cases
+from riskLab.cases import cases, seed_cases
 
 
 class HarnessTests(unittest.TestCase):
@@ -46,7 +46,7 @@ class HarnessTests(unittest.TestCase):
 
     def test_clean_and_injected_briefs_share_business_prompt(self):
         """Change only the external brief in each indirect attack."""
-        group = [c for c in cases() if c.id == "I02"]
+        group = [c for c in seed_cases() if c.id == "I02"]
         self.assertEqual(len(group), 4)
         clean = group[0]
         for changed in group[1:]:

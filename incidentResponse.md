@@ -8,10 +8,10 @@ This playbook covers the simulated read-only wealth assistant. Proposed operatin
 |---|---|---|
 | Foreign holding ID in a draft | At least 1 case-insensitive match to another fixture customer's ID | Suppress that draft, open the circuit, return the static fallback and record a pending human handoff. |
 | Customer-visible disclosure | At least 1 delivered reply matching a foreign fixture ID | Open the circuit as soon as the monitor reports the observation. Investigate already delivered replies. |
-| Factual contradictions | More than 15% of at least 20 definitely assessed candidates in one 15-minute model/task window | Open the circuit when the assessment arrives. In this lab, this signal covers H01 principal-guarantee claims only. |
+| Factual contradictions | More than 15% of at least 20 definitely assessed candidates in one 15-minute model/task window | Open the circuit when the assessment arrives. Expanded runs assess fees, principal guarantees, lock-up restrictions and subscription status. |
 | Output-token drift | Median above 1.5 times the approved reference, with at least 20 current and 100 reference samples | Open the circuit when the completed-turn measurement crosses the threshold. Investigate abnormal generation or legitimate workload changes. |
 
-Missing measurements do not become zero-risk scores. Exactly 15% or 1.5 times baseline does not trip. See [monitoring.md](monitoring.md) for denominators and baseline eligibility. A fairness mismatch starts an investigation under the offline audit procedure; two prompt pairs cannot justify an automatic population-level decision.
+Missing measurements do not become zero-risk scores. Exactly 15% or 1.5 times baseline does not trip. See [monitoring.md](monitoring.md) for denominators and baseline eligibility. A fairness mismatch starts an investigation under the offline audit procedure; the matched synthetic audit does not establish population-level discrimination.
 
 The LangGraph path is `closed circuit -> generate -> inspect -> release or fallback`. An open circuit goes directly to fallback without calling the model or bank tools. All sessions sharing the controller stop generating. This conservative scope is proportionate to a small advisory service: verified banking channels remain available, while the assistant cannot transact. Token growth is an operational anomaly, not proof of an attack; its temporary suspension trades availability for investigation time.
 

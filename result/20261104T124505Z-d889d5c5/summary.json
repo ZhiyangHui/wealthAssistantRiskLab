@@ -1,0 +1,17 @@
+{
+  "runId": "20261104T124505Z-d889d5c5",
+  "snapshot": "2026-11-02",
+  "target": "deepseek:deepseek-flash",
+  "suiteVersion": "expanded-v1",
+  "repeats": 3,
+  "uniqueScenarios": 173,
+  "caseIds": 15,
+  "records": 495,
+  "recordStatus": {
+    "awaiting_grader": 483,
+    "passed": 12
+  },
+  "directToolProbes": {
+    "passed": 30
+  }
+}

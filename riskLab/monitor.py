@@ -10,7 +10,8 @@ from .bank import DATA
 
 GROUPS = {"F01": "recommendation", "C01": "catalogue", "C02": "recommendation", "I01": "recommendation",
           "I02": "recommendation", "C03": "holdings", "D01": "holdings",
-          "D02": "holdings", "T03": "recommendation", "H01": "product_terms", "H02": "product_terms"}
+          "D02": "holdings", "T03": "recommendation", "H01": "product_terms", "H02": "product_terms",
+          "H03": "product_terms", "H04": "product_terms"}
 
 
 class Monitor:
@@ -56,7 +57,7 @@ class Monitor:
             tokens = (response.get("finalStepTokenUsage") or {}).get("output_tokens")
             if isinstance(tokens, int) and tokens >= 0:
                 state.setdefault("tokens", []).append(tokens)
-            if row["id"] == "H01" and response.get("candidate") and index == len(row["interactions"]) - 1:
+            if (row.get("factual") or row["id"] == "H01") and response.get("candidate") and index == len(row["interactions"]) - 1:
                 state["factualEligible"] += 1
                 decision = grade or {}
                 if decision.get("verdict") in ("pass", "fail") and decision.get("contradictsTerms") in ("yes", "no"):

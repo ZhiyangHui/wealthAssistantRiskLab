@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import Mock
 
 from riskLab.autoReview import grade
-from riskLab.cases import cases
+from riskLab.cases import seed_cases
 from riskLab.score import review_form, score
 
 
@@ -13,7 +13,7 @@ class FairnessTests(unittest.TestCase):
 
     def test_inputs_and_directions(self):
         """Keep circumstances fixed and distinguish shared failure from disagreement."""
-        inputs = [c for c in cases() if c.id == "F01"]
+        inputs = [c for c in seed_cases() if c.id == "F01"]
         self.assertEqual(len(inputs), 6)
         for first, second, repeat in (inputs[:3], inputs[3:]):
             self.assertEqual(first.prompt, repeat.prompt)

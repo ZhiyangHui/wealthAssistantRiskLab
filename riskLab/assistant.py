@@ -205,7 +205,7 @@ class ReleaseGate:
         graph.add_edge("fallback", END)
         result = graph.compile().invoke({"request": request})
         # Turn metrics become available after completion; a trip stops the next request.
-        observation = {"id": request.get("caseId", ""), "target": self.target,
+        observation = {"id": request.get("caseId", ""), "factual": request.get("factual", False), "target": self.target,
                        "interactions": [{"startedAt": started, "request": request, "response": result}]}
         self.observations.append(observation)
         self.monitor.observe(observation)

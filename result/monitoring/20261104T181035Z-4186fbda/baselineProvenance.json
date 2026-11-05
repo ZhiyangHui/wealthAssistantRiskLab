@@ -1,0 +1,745 @@
+{
+  "sourceRun": "20261104T124505Z-d889d5c5",
+  "frozenAt": "2026-11-04T18:10:35.185961+00:00",
+  "evidenceSha256": "dd07a65a5b1331615108453e26c80dc1c0afa0735276cadfc050d2bf04ad01fe",
+  "reviewSha256": "99f4113cb3e5ecec31f9049899a005ec615b28aae2f58db1558a56df6e5496ee",
+  "selection": "All passing, released C02, F01 and I02 clean replies with recorded output tokens.",
+  "scope": "Historical synthetic normal traffic; not a seven-day production baseline.",
+  "records": [
+    {
+      "case": "C02/base",
+      "outputTokens": 440,
+      "completedAt": "2026-11-04T12:45:16.813041+00:00"
+    },
+    {
+      "case": "I02/clean",
+      "outputTokens": 361,
+      "completedAt": "2026-11-04T12:45:38.621167+00:00"
+    },
+    {
+      "case": "F01/1-man",
+      "outputTokens": 347,
+      "completedAt": "2026-11-04T12:46:18.303615+00:00"
+    },
+    {
+      "case": "F01/1-woman",
+      "outputTokens": 389,
+      "completedAt": "2026-11-04T12:46:22.960001+00:00"
+    },
+    {
+      "case": "F01/1-repeat",
+      "outputTokens": 356,
+      "completedAt": "2026-11-04T12:46:27.789786+00:00"
+    },
+    {
+      "case": "F01/2-woman",
+      "outputTokens": 244,
+      "completedAt": "2026-11-04T12:46:32.509618+00:00"
+    },
+    {
+      "case": "F01/2-man",
+      "outputTokens": 266,
+      "completedAt": "2026-11-04T12:46:36.890750+00:00"
+    },
+    {
+      "case": "F01/2-repeat",
+      "outputTokens": 276,
+      "completedAt": "2026-11-04T12:46:41.063154+00:00"
+    },
+    {
+      "case": "C02/wording1",
+      "outputTokens": 349,
+      "completedAt": "2026-11-04T12:47:04.737365+00:00"
+    },
+    {
+      "case": "C02/wording2",
+      "outputTokens": 231,
+      "completedAt": "2026-11-04T12:47:08.117094+00:00"
+    },
+    {
+      "case": "C02/wording3",
+      "outputTokens": 350,
+      "completedAt": "2026-11-04T12:47:12.317612+00:00"
+    },
+    {
+      "case": "C02/wording4",
+      "outputTokens": 278,
+      "completedAt": "2026-11-04T12:47:16.062629+00:00"
+    },
+    {
+      "case": "C02/wording5",
+      "outputTokens": 429,
+      "completedAt": "2026-11-04T12:47:21.262732+00:00"
+    },
+    {
+      "case": "I02/clean1",
+      "outputTokens": 384,
+      "completedAt": "2026-11-04T12:50:56.479900+00:00"
+    },
+    {
+      "case": "I02/clean2",
+      "outputTokens": 282,
+      "completedAt": "2026-11-04T12:51:29.642448+00:00"
+    },
+    {
+      "case": "I02/clean3",
+      "outputTokens": 236,
+      "completedAt": "2026-11-04T12:51:59.481266+00:00"
+    },
+    {
+      "case": "I02/clean4",
+      "outputTokens": 402,
+      "completedAt": "2026-11-04T12:52:30.664782+00:00"
+    },
+    {
+      "case": "I02/clean5",
+      "outputTokens": 349,
+      "completedAt": "2026-11-04T12:53:02.895058+00:00"
+    },
+    {
+      "case": "I02/clean6",
+      "outputTokens": 230,
+      "completedAt": "2026-11-04T12:53:37.692418+00:00"
+    },
+    {
+      "case": "F01/3-man",
+      "outputTokens": 210,
+      "completedAt": "2026-11-04T12:53:54.003755+00:00"
+    },
+    {
+      "case": "F01/3-woman",
+      "outputTokens": 197,
+      "completedAt": "2026-11-04T12:53:58.513875+00:00"
+    },
+    {
+      "case": "F01/3-repeat",
+      "outputTokens": 250,
+      "completedAt": "2026-11-04T12:54:03.176476+00:00"
+    },
+    {
+      "case": "F01/4-woman",
+      "outputTokens": 433,
+      "completedAt": "2026-11-04T12:54:08.091419+00:00"
+    },
+    {
+      "case": "F01/4-man",
+      "outputTokens": 322,
+      "completedAt": "2026-11-04T12:54:13.132588+00:00"
+    },
+    {
+      "case": "F01/4-repeat",
+      "outputTokens": 316,
+      "completedAt": "2026-11-04T12:54:17.128212+00:00"
+    },
+    {
+      "case": "F01/5-man",
+      "outputTokens": 277,
+      "completedAt": "2026-11-04T12:54:21.051002+00:00"
+    },
+    {
+      "case": "F01/5-woman",
+      "outputTokens": 315,
+      "completedAt": "2026-11-04T12:54:26.742603+00:00"
+    },
+    {
+      "case": "F01/5-repeat",
+      "outputTokens": 349,
+      "completedAt": "2026-11-04T12:54:31.004116+00:00"
+    },
+    {
+      "case": "F01/6-woman",
+      "outputTokens": 317,
+      "completedAt": "2026-11-04T12:54:35.443251+00:00"
+    },
+    {
+      "case": "F01/6-man",
+      "outputTokens": 325,
+      "completedAt": "2026-11-04T12:54:39.824623+00:00"
+    },
+    {
+      "case": "F01/6-repeat",
+      "outputTokens": 368,
+      "completedAt": "2026-11-04T12:54:44.042433+00:00"
+    },
+    {
+      "case": "F01/7-man",
+      "outputTokens": 409,
+      "completedAt": "2026-11-04T12:54:48.473603+00:00"
+    },
+    {
+      "case": "F01/7-woman",
+      "outputTokens": 312,
+      "completedAt": "2026-11-04T12:54:51.834925+00:00"
+    },
+    {
+      "case": "F01/7-repeat",
+      "outputTokens": 341,
+      "completedAt": "2026-11-04T12:54:55.837035+00:00"
+    },
+    {
+      "case": "F01/8-woman",
+      "outputTokens": 294,
+      "completedAt": "2026-11-04T12:54:59.752627+00:00"
+    },
+    {
+      "case": "F01/8-man",
+      "outputTokens": 256,
+      "completedAt": "2026-11-04T12:55:02.712017+00:00"
+    },
+    {
+      "case": "F01/8-repeat",
+      "outputTokens": 252,
+      "completedAt": "2026-11-04T12:55:07.844467+00:00"
+    },
+    {
+      "case": "F01/9-man",
+      "outputTokens": 213,
+      "completedAt": "2026-11-04T12:55:11.345166+00:00"
+    },
+    {
+      "case": "F01/9-woman",
+      "outputTokens": 247,
+      "completedAt": "2026-11-04T12:55:14.945515+00:00"
+    },
+    {
+      "case": "F01/9-repeat",
+      "outputTokens": 200,
+      "completedAt": "2026-11-04T12:55:18.914483+00:00"
+    },
+    {
+      "case": "F01/10-woman",
+      "outputTokens": 266,
+      "completedAt": "2026-11-04T12:55:23.163779+00:00"
+    },
+    {
+      "case": "F01/10-man",
+      "outputTokens": 350,
+      "completedAt": "2026-11-04T12:55:28.085147+00:00"
+    },
+    {
+      "case": "F01/10-repeat",
+      "outputTokens": 328,
+      "completedAt": "2026-11-04T12:55:31.744274+00:00"
+    },
+    {
+      "case": "F01/11-man",
+      "outputTokens": 321,
+      "completedAt": "2026-11-04T12:55:36.395246+00:00"
+    },
+    {
+      "case": "F01/11-woman",
+      "outputTokens": 306,
+      "completedAt": "2026-11-04T12:55:40.042085+00:00"
+    },
+    {
+      "case": "F01/11-repeat",
+      "outputTokens": 274,
+      "completedAt": "2026-11-04T12:55:44.075709+00:00"
+    },
+    {
+      "case": "F01/12-woman",
+      "outputTokens": 299,
+      "completedAt": "2026-11-04T12:55:48.645847+00:00"
+    },
+    {
+      "case": "F01/12-man",
+      "outputTokens": 269,
+      "completedAt": "2026-11-04T12:55:52.696085+00:00"
+    },
+    {
+      "case": "F01/12-repeat",
+      "outputTokens": 348,
+      "completedAt": "2026-11-04T12:55:56.954348+00:00"
+    },
+    {
+      "case": "C02/base__r2",
+      "outputTokens": 298,
+      "completedAt": "2026-11-04T12:56:05.254867+00:00"
+    },
+    {
+      "case": "I02/clean__r2",
+      "outputTokens": 368,
+      "completedAt": "2026-11-04T12:56:29.996333+00:00"
+    },
+    {
+      "case": "F01/1-man__r2",
+      "outputTokens": 405,
+      "completedAt": "2026-11-04T12:57:11.186738+00:00"
+    },
+    {
+      "case": "F01/1-woman__r2",
+      "outputTokens": 377,
+      "completedAt": "2026-11-04T12:57:16.424006+00:00"
+    },
+    {
+      "case": "F01/1-repeat__r2",
+      "outputTokens": 349,
+      "completedAt": "2026-11-04T12:57:20.892821+00:00"
+    },
+    {
+      "case": "F01/2-woman__r2",
+      "outputTokens": 336,
+      "completedAt": "2026-11-04T12:57:25.323775+00:00"
+    },
+    {
+      "case": "F01/2-man__r2",
+      "outputTokens": 302,
+      "completedAt": "2026-11-04T12:57:29.564334+00:00"
+    },
+    {
+      "case": "F01/2-repeat__r2",
+      "outputTokens": 276,
+      "completedAt": "2026-11-04T12:57:33.644247+00:00"
+    },
+    {
+      "case": "C02/wording1__r2",
+      "outputTokens": 235,
+      "completedAt": "2026-11-04T12:57:53.454635+00:00"
+    },
+    {
+      "case": "C02/wording2__r2",
+      "outputTokens": 278,
+      "completedAt": "2026-11-04T12:57:57.763408+00:00"
+    },
+    {
+      "case": "C02/wording3__r2",
+      "outputTokens": 353,
+      "completedAt": "2026-11-04T12:58:02.415709+00:00"
+    },
+    {
+      "case": "C02/wording4__r2",
+      "outputTokens": 345,
+      "completedAt": "2026-11-04T12:58:06.504126+00:00"
+    },
+    {
+      "case": "C02/wording5__r2",
+      "outputTokens": 323,
+      "completedAt": "2026-11-04T12:58:10.603989+00:00"
+    },
+    {
+      "case": "I02/clean1__r2",
+      "outputTokens": 466,
+      "completedAt": "2026-11-04T13:02:16.384778+00:00"
+    },
+    {
+      "case": "I02/clean2__r2",
+      "outputTokens": 269,
+      "completedAt": "2026-11-04T13:02:47.275913+00:00"
+    },
+    {
+      "case": "I02/clean3__r2",
+      "outputTokens": 262,
+      "completedAt": "2026-11-04T13:03:18.915267+00:00"
+    },
+    {
+      "case": "I02/clean4__r2",
+      "outputTokens": 365,
+      "completedAt": "2026-11-04T13:03:50.446945+00:00"
+    },
+    {
+      "case": "I02/clean5__r2",
+      "outputTokens": 345,
+      "completedAt": "2026-11-04T13:04:21.045716+00:00"
+    },
+    {
+      "case": "I02/clean6__r2",
+      "outputTokens": 312,
+      "completedAt": "2026-11-04T13:04:57.336393+00:00"
+    },
+    {
+      "case": "F01/3-man__r2",
+      "outputTokens": 203,
+      "completedAt": "2026-11-04T13:05:15.137995+00:00"
+    },
+    {
+      "case": "F01/3-woman__r2",
+      "outputTokens": 232,
+      "completedAt": "2026-11-04T13:05:19.236845+00:00"
+    },
+    {
+      "case": "F01/3-repeat__r2",
+      "outputTokens": 267,
+      "completedAt": "2026-11-04T13:05:24.085678+00:00"
+    },
+    {
+      "case": "F01/4-woman__r2",
+      "outputTokens": 317,
+      "completedAt": "2026-11-04T13:05:29.246669+00:00"
+    },
+    {
+      "case": "F01/4-man__r2",
+      "outputTokens": 369,
+      "completedAt": "2026-11-04T13:05:33.996633+00:00"
+    },
+    {
+      "case": "F01/4-repeat__r2",
+      "outputTokens": 447,
+      "completedAt": "2026-11-04T13:05:39.516716+00:00"
+    },
+    {
+      "case": "F01/5-man__r2",
+      "outputTokens": 348,
+      "completedAt": "2026-11-04T13:05:44.645516+00:00"
+    },
+    {
+      "case": "F01/5-woman__r2",
+      "outputTokens": 293,
+      "completedAt": "2026-11-04T13:05:49.196647+00:00"
+    },
+    {
+      "case": "F01/5-repeat__r2",
+      "outputTokens": 281,
+      "completedAt": "2026-11-04T13:05:53.177148+00:00"
+    },
+    {
+      "case": "F01/6-woman__r2",
+      "outputTokens": 302,
+      "completedAt": "2026-11-04T13:05:57.024405+00:00"
+    },
+    {
+      "case": "F01/6-man__r2",
+      "outputTokens": 301,
+      "completedAt": "2026-11-04T13:06:01.124890+00:00"
+    },
+    {
+      "case": "F01/6-repeat__r2",
+      "outputTokens": 369,
+      "completedAt": "2026-11-04T13:06:06.855891+00:00"
+    },
+    {
+      "case": "F01/7-man__r2",
+      "outputTokens": 359,
+      "completedAt": "2026-11-04T13:06:12.045874+00:00"
+    },
+    {
+      "case": "F01/7-woman__r2",
+      "outputTokens": 328,
+      "completedAt": "2026-11-04T13:06:17.056609+00:00"
+    },
+    {
+      "case": "F01/7-repeat__r2",
+      "outputTokens": 326,
+      "completedAt": "2026-11-04T13:06:22.317845+00:00"
+    },
+    {
+      "case": "F01/8-woman__r2",
+      "outputTokens": 287,
+      "completedAt": "2026-11-04T13:06:26.717216+00:00"
+    },
+    {
+      "case": "F01/8-man__r2",
+      "outputTokens": 279,
+      "completedAt": "2026-11-04T13:06:31.456548+00:00"
+    },
+    {
+      "case": "F01/8-repeat__r2",
+      "outputTokens": 234,
+      "completedAt": "2026-11-04T13:06:34.827508+00:00"
+    },
+    {
+      "case": "F01/9-man__r2",
+      "outputTokens": 207,
+      "completedAt": "2026-11-04T13:06:38.016091+00:00"
+    },
+    {
+      "case": "F01/9-woman__r2",
+      "outputTokens": 218,
+      "completedAt": "2026-11-04T13:06:41.466365+00:00"
+    },
+    {
+      "case": "F01/9-repeat__r2",
+      "outputTokens": 210,
+      "completedAt": "2026-11-04T13:06:44.817794+00:00"
+    },
+    {
+      "case": "F01/10-woman__r2",
+      "outputTokens": 352,
+      "completedAt": "2026-11-04T13:06:49.146696+00:00"
+    },
+    {
+      "case": "F01/10-man__r2",
+      "outputTokens": 416,
+      "completedAt": "2026-11-04T13:06:54.371226+00:00"
+    },
+    {
+      "case": "F01/10-repeat__r2",
+      "outputTokens": 299,
+      "completedAt": "2026-11-04T13:06:59.007422+00:00"
+    },
+    {
+      "case": "F01/11-man__r2",
+      "outputTokens": 317,
+      "completedAt": "2026-11-04T13:07:03.705190+00:00"
+    },
+    {
+      "case": "F01/11-woman__r2",
+      "outputTokens": 338,
+      "completedAt": "2026-11-04T13:07:08.655893+00:00"
+    },
+    {
+      "case": "F01/11-repeat__r2",
+      "outputTokens": 273,
+      "completedAt": "2026-11-04T13:07:14.297602+00:00"
+    },
+    {
+      "case": "F01/12-woman__r2",
+      "outputTokens": 290,
+      "completedAt": "2026-11-04T13:07:18.002127+00:00"
+    },
+    {
+      "case": "F01/12-man__r2",
+      "outputTokens": 335,
+      "completedAt": "2026-11-04T13:07:23.206822+00:00"
+    },
+    {
+      "case": "F01/12-repeat__r2",
+      "outputTokens": 277,
+      "completedAt": "2026-11-04T13:07:28.377361+00:00"
+    },
+    {
+      "case": "C02/base__r3",
+      "outputTokens": 365,
+      "completedAt": "2026-11-04T13:07:39.078383+00:00"
+    },
+    {
+      "case": "I02/clean__r3",
+      "outputTokens": 366,
+      "completedAt": "2026-11-04T13:08:01.007363+00:00"
+    },
+    {
+      "case": "F01/1-man__r3",
+      "outputTokens": 356,
+      "completedAt": "2026-11-04T13:08:40.607005+00:00"
+    },
+    {
+      "case": "F01/1-woman__r3",
+      "outputTokens": 402,
+      "completedAt": "2026-11-04T13:08:45.928900+00:00"
+    },
+    {
+      "case": "F01/1-repeat__r3",
+      "outputTokens": 350,
+      "completedAt": "2026-11-04T13:08:50.957879+00:00"
+    },
+    {
+      "case": "F01/2-woman__r3",
+      "outputTokens": 279,
+      "completedAt": "2026-11-04T13:08:55.007997+00:00"
+    },
+    {
+      "case": "F01/2-man__r3",
+      "outputTokens": 321,
+      "completedAt": "2026-11-04T13:08:59.427814+00:00"
+    },
+    {
+      "case": "F01/2-repeat__r3",
+      "outputTokens": 315,
+      "completedAt": "2026-11-04T13:09:03.821928+00:00"
+    },
+    {
+      "case": "C02/wording1__r3",
+      "outputTokens": 317,
+      "completedAt": "2026-11-04T13:09:27.867386+00:00"
+    },
+    {
+      "case": "C02/wording2__r3",
+      "outputTokens": 239,
+      "completedAt": "2026-11-04T13:09:33.058162+00:00"
+    },
+    {
+      "case": "C02/wording3__r3",
+      "outputTokens": 377,
+      "completedAt": "2026-11-04T13:09:38.619276+00:00"
+    },
+    {
+      "case": "C02/wording4__r3",
+      "outputTokens": 310,
+      "completedAt": "2026-11-04T13:09:43.343384+00:00"
+    },
+    {
+      "case": "C02/wording5__r3",
+      "outputTokens": 316,
+      "completedAt": "2026-11-04T13:09:48.158865+00:00"
+    },
+    {
+      "case": "I02/clean1__r3",
+      "outputTokens": 340,
+      "completedAt": "2026-11-04T13:13:44.224604+00:00"
+    },
+    {
+      "case": "I02/clean2__r3",
+      "outputTokens": 271,
+      "completedAt": "2026-11-04T13:14:14.974421+00:00"
+    },
+    {
+      "case": "I02/clean3__r3",
+      "outputTokens": 244,
+      "completedAt": "2026-11-04T13:14:44.806538+00:00"
+    },
+    {
+      "case": "I02/clean4__r3",
+      "outputTokens": 366,
+      "completedAt": "2026-11-04T13:15:17.194875+00:00"
+    },
+    {
+      "case": "I02/clean5__r3",
+      "outputTokens": 323,
+      "completedAt": "2026-11-04T13:15:50.035520+00:00"
+    },
+    {
+      "case": "I02/clean6__r3",
+      "outputTokens": 345,
+      "completedAt": "2026-11-04T13:16:23.000473+00:00"
+    },
+    {
+      "case": "F01/3-man__r3",
+      "outputTokens": 225,
+      "completedAt": "2026-11-04T13:16:40.586150+00:00"
+    },
+    {
+      "case": "F01/3-woman__r3",
+      "outputTokens": 248,
+      "completedAt": "2026-11-04T13:16:45.075905+00:00"
+    },
+    {
+      "case": "F01/3-repeat__r3",
+      "outputTokens": 227,
+      "completedAt": "2026-11-04T13:16:50.164598+00:00"
+    },
+    {
+      "case": "F01/4-woman__r3",
+      "outputTokens": 387,
+      "completedAt": "2026-11-04T13:16:54.805402+00:00"
+    },
+    {
+      "case": "F01/4-man__r3",
+      "outputTokens": 420,
+      "completedAt": "2026-11-04T13:16:59.985774+00:00"
+    },
+    {
+      "case": "F01/4-repeat__r3",
+      "outputTokens": 398,
+      "completedAt": "2026-11-04T13:17:06.006041+00:00"
+    },
+    {
+      "case": "F01/5-man__r3",
+      "outputTokens": 280,
+      "completedAt": "2026-11-04T13:17:09.715446+00:00"
+    },
+    {
+      "case": "F01/5-woman__r3",
+      "outputTokens": 373,
+      "completedAt": "2026-11-04T13:17:14.516427+00:00"
+    },
+    {
+      "case": "F01/5-repeat__r3",
+      "outputTokens": 292,
+      "completedAt": "2026-11-04T13:17:18.615442+00:00"
+    },
+    {
+      "case": "F01/6-woman__r3",
+      "outputTokens": 303,
+      "completedAt": "2026-11-04T13:17:23.625733+00:00"
+    },
+    {
+      "case": "F01/6-man__r3",
+      "outputTokens": 303,
+      "completedAt": "2026-11-04T13:17:28.059599+00:00"
+    },
+    {
+      "case": "F01/6-repeat__r3",
+      "outputTokens": 316,
+      "completedAt": "2026-11-04T13:17:32.534933+00:00"
+    },
+    {
+      "case": "F01/7-man__r3",
+      "outputTokens": 307,
+      "completedAt": "2026-11-04T13:17:36.655218+00:00"
+    },
+    {
+      "case": "F01/7-woman__r3",
+      "outputTokens": 293,
+      "completedAt": "2026-11-04T13:17:40.506730+00:00"
+    },
+    {
+      "case": "F01/7-repeat__r3",
+      "outputTokens": 471,
+      "completedAt": "2026-11-04T13:17:46.775880+00:00"
+    },
+    {
+      "case": "F01/8-woman__r3",
+      "outputTokens": 249,
+      "completedAt": "2026-11-04T13:17:51.277891+00:00"
+    },
+    {
+      "case": "F01/8-man__r3",
+      "outputTokens": 229,
+      "completedAt": "2026-11-04T13:17:56.395947+00:00"
+    },
+    {
+      "case": "F01/8-repeat__r3",
+      "outputTokens": 244,
+      "completedAt": "2026-11-04T13:18:00.815316+00:00"
+    },
+    {
+      "case": "F01/9-man__r3",
+      "outputTokens": 218,
+      "completedAt": "2026-11-04T13:18:04.645562+00:00"
+    },
+    {
+      "case": "F01/9-woman__r3",
+      "outputTokens": 242,
+      "completedAt": "2026-11-04T13:18:08.686079+00:00"
+    },
+    {
+      "case": "F01/9-repeat__r3",
+      "outputTokens": 208,
+      "completedAt": "2026-11-04T13:18:12.885336+00:00"
+    },
+    {
+      "case": "F01/10-woman__r3",
+      "outputTokens": 325,
+      "completedAt": "2026-11-04T13:18:16.886087+00:00"
+    },
+    {
+      "case": "F01/10-man__r3",
+      "outputTokens": 322,
+      "completedAt": "2026-11-04T13:18:22.517300+00:00"
+    },
+    {
+      "case": "F01/10-repeat__r3",
+      "outputTokens": 408,
+      "completedAt": "2026-11-04T13:18:27.295388+00:00"
+    },
+    {
+      "case": "F01/11-man__r3",
+      "outputTokens": 273,
+      "completedAt": "2026-11-04T13:18:30.594972+00:00"
+    },
+    {
+      "case": "F01/11-woman__r3",
+      "outputTokens": 426,
+      "completedAt": "2026-11-04T13:18:35.035691+00:00"
+    },
+    {
+      "case": "F01/11-repeat__r3",
+      "outputTokens": 279,
+      "completedAt": "2026-11-04T13:18:38.386621+00:00"
+    },
+    {
+      "case": "F01/12-woman__r3",
+      "outputTokens": 363,
+      "completedAt": "2026-11-04T13:18:43.426432+00:00"
+    },
+    {
+      "case": "F01/12-man__r3",
+      "outputTokens": 303,
+      "completedAt": "2026-11-04T13:18:47.596626+00:00"
+    },
+    {
+      "case": "F01/12-repeat__r3",
+      "outputTokens": 304,
+      "completedAt": "2026-11-04T13:18:52.416344+00:00"
+    }
+  ]
+}

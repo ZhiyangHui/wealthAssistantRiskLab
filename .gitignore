@@ -1,7 +1,7 @@
 __pycache__/
 *.py[cod]
 .venv/
-/result/*/*.jsonl
+/result/**/*.jsonl
 /AGENTS.md
 /.env
 /result/**/control.json

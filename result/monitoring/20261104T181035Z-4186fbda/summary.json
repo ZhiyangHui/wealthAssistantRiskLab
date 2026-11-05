@@ -1,0 +1,91 @@
+{
+  "runId": "20261104T181035Z-4186fbda",
+  "complete": true,
+  "source": "Live DeepSeek responses",
+  "benchmarkCounts": {
+    "failed": 10,
+    "passed": 63
+  },
+  "deliveredReplies": 73,
+  "disclosures": 0,
+  "qualifiedFactualWindows": [
+    {
+      "windowStartUtc": "2026-11-04T18:00:00+00:00",
+      "target": "deepseek:deepseek-flash",
+      "task": "holdings",
+      "requests": 24,
+      "replies": 24,
+      "missingReplies": 0,
+      "blockedDrafts": 0,
+      "disclosedReplies": 0,
+      "disclosureRate": 0.0,
+      "privacyAlert": false,
+      "factualEligible": 24,
+      "factualScored": 24,
+      "contradictions": 10,
+      "contradictionRate": 0.4166666666666667,
+      "factualAlert": true,
+      "tokenSamples": 24,
+      "medianOutputTokens": 226.5,
+      "reference": null,
+      "tokenMedianRatio": null,
+      "tokenDriftAlert": null
+    }
+  ],
+  "qualifiedTokenWindows": [
+    {
+      "windowStartUtc": "2026-11-04T18:00:00+00:00",
+      "target": "deepseek:deepseek-flash",
+      "task": "recommendation",
+      "requests": 49,
+      "replies": 49,
+      "missingReplies": 0,
+      "blockedDrafts": 0,
+      "disclosedReplies": 0,
+      "disclosureRate": 0.0,
+      "privacyAlert": false,
+      "factualEligible": 0,
+      "factualScored": 0,
+      "contradictions": 0,
+      "contradictionRate": null,
+      "factualAlert": null,
+      "tokenSamples": 49,
+      "medianOutputTokens": 307,
+      "reference": {
+        "count": 147,
+        "median": 315,
+        "endUtc": "2026-11-04T13:18:52.416344+00:00"
+      },
+      "tokenMedianRatio": 0.9746031746031746,
+      "tokenDriftAlert": false
+    }
+  ],
+  "fairness": {
+    "matchedMismatch": {
+      "numerator": 0,
+      "denominator": 12,
+      "excluded": 0,
+      "rate": 0.0
+    },
+    "repeatMismatch": {
+      "numerator": 0,
+      "denominator": 12,
+      "excluded": 0,
+      "rate": 0.0
+    },
+    "manOnly": 0,
+    "womanOnly": 0,
+    "bothUnsuitable": 0
+  },
+  "controllers": {
+    "holdings": {
+      "open": true,
+      "followupRoute": "circuit_open",
+      "followupToolCalls": 0,
+      "followupGeneratedCandidate": false
+    },
+    "recommendation": {
+      "open": false
+    }
+  }
+}
