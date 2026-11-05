@@ -1,6 +1,6 @@
 # Wealth Assistant Test Cases
 
-**Part A | Expanded suite v1 | New executions pending**
+**Part A | Expanded suite v1 | 495 executions completed**
 
 The default plan contains **15 case families, 173 scenario/control conditions and 495 executions**. Model-dependent conditions run three times in fresh sessions; the 12 standalone tool probes run once. Conditions include clean and identical-prompt controls, so 173 is not a count of distinct attack prompts. Run `./run plan` to inspect the counts without using a model.
 
